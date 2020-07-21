@@ -45,7 +45,7 @@ class NewFilterActivity : AppCompatActivity(), NumberPicker.OnValueChangeListene
 
     override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
         val v = this@NewFilterActivity.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        v.vibrate(VibrationEffect.createOneShot(20,5))
+        v.vibrate(VibrationEffect.createOneShot(20,VibrationEffect.EFFECT_TICK))
     }
 
     override fun onClick(p0: View?) {

@@ -1,37 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-    <import type="com.example.filtercounter.DataBindingViewsUtil"/>
+
         <variable
-            name="mFilter"
-            type="com.example.filtercounter.Filter" />
+            name="viewModel"
+            type="com.example.filtercounter.MainActivityViewModel" />
     </data>
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="center">
 
-        <TextView
-            android:id="@+id/filterResource"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(mFilter.resource)}" />
+        <LinearLayout
 
-        <TextView
-            android:id="@+id/filterPassed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(mFilter.passed)}" />
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@drawable/circle_blue_background"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:orientation="vertical"
+            android:padding="60dp">
 
-        <TextView
-            android:id="@+id/filterOneFill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(mFilter.oneFill)}" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ресурс фильтра:" />
+
+                <TextView
+                    android:id="@+id/filterResource"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(viewModel.filter.resource)}" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Пропущено воды:" />
+
+                <TextView
+                    android:id="@+id/filterPassed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.filterPassed}" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ПОЛОПНИТЬ"
+                android:textSize="18dp" />
+
+        </LinearLayout>
     </LinearLayout>
-
 </layout>
