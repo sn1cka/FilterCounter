@@ -2,6 +2,7 @@ package com.example.filtercounter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -34,7 +35,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.viewModel!!.fillFilter()
         CacheHelper.saveFilter(this, binding.viewModel!!.filter.get()!!)
         val v = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        v.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.EFFECT_TICK))
+        if (Build.VERSION.SDK_INT > 25) {
+            v.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.EFFECT_TICK))
+        } else{
+            v.vibrate(30)
+        }
     }
 
 }

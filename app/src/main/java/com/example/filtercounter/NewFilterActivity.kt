@@ -2,11 +2,14 @@ package com.example.filtercounter
 
 import android.content.Context
 import android.content.Intent
+import android.icu.util.VersionInfo
+import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.View
 import android.widget.NumberPicker
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_new_filter.*
@@ -32,20 +35,26 @@ class NewFilterActivity : AppCompatActivity(), NumberPicker.OnValueChangeListene
         resourcePicker.minValue = 0
         resourcePicker.maxValue = resourceList.size-1
         resourcePicker.wrapSelectorWheel = false
-        resourcePicker.displayedValues = stream(resourceList).map { "$it л" }.collect(Collectors.toList()).toTypedArray()
+        resourcePicker.displayedValues = resourceList.map { "$it л" }.toTypedArray()
         resourcePicker.setOnValueChangedListener(this)
 
 
         oneFillPicker.minValue = 0
         oneFillPicker.maxValue = oneFillList.size - 1
         oneFillPicker.wrapSelectorWheel = false
-        oneFillPicker.displayedValues = stream(oneFillList).map { "$it л" }.collect(Collectors.toList()).toTypedArray()
+        oneFillPicker.displayedValues = oneFillList.map { "$it л" }.toTypedArray()
         oneFillPicker.setOnValueChangedListener(this)
     }
 
+
     override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
         val v = this@NewFilterActivity.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        v.vibrate(VibrationEffect.createOneShot(20,VibrationEffect.EFFECT_TICK))
+        if(Build.VERSION.SDK_INT > 25) {
+            v.vibrate(VibrationEffect.createOneShot(20, VibrationEffect.EFFECT_TICK))
+        }
+        else{
+            v.vibrate(20)
+        }
     }
 
     override fun onClick(p0: View?) {

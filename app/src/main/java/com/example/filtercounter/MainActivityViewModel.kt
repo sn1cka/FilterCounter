@@ -5,19 +5,19 @@ import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel : ViewModel() {
 
-    var filterPassed = ObservableFloatString()
+    var filterWaterCount = ObservableFloatString()
     var filter = object : ObservableField<Filter>() {
         override fun set(value: Filter?) {
-            filterPassed.set(value!!.passed,2)
+            filterWaterCount.set(value!!.passed,2)
             super.set(value)
         }
     }
 
     fun fillFilter() {
         filter.get()!!.passed += filter.get()!!.oneFill
-        filterPassed.set(filter.get()!!.passed,2)
+        filterWaterCount.set(filter.get()!!.passed,2)
         filter.notifyPropertyChanged(0)
-        filterPassed.notifyPropertyChanged(0)
+        filterWaterCount.notifyPropertyChanged(0)
     }
 }
 
