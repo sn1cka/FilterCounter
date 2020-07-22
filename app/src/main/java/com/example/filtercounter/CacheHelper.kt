@@ -1,7 +1,6 @@
 package com.example.filtercounter
 
 import android.content.Context
-import android.content.SharedPreferences
 
 object CacheHelper {
     fun isFilterSet(context: Context): Boolean {
@@ -9,10 +8,10 @@ object CacheHelper {
         return preferences.getBoolean("isFilterSet", false)
     }
 
-    private fun isFilterSet(context: Context, boolean: Boolean) {
+    private fun isFilterSet(context: Context, b: Boolean) {
         val preferences = context.getSharedPreferences("Filter",Context.MODE_PRIVATE)
         val editor = preferences.edit()
-        editor.putBoolean("isFilterSet", boolean)
+        editor.putBoolean("isFilterSet", b)
         editor.apply()
     }
 

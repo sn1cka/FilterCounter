@@ -8,14 +8,14 @@ class MainActivityViewModel : ViewModel() {
     var filterWaterCount = ObservableFloatString()
     var filter = object : ObservableField<Filter>() {
         override fun set(value: Filter?) {
-            filterWaterCount.set(value!!.passed,2)
+            filterWaterCount.set(value!!.passed,1)
             super.set(value)
         }
     }
 
     fun fillFilter() {
         filter.get()!!.passed += filter.get()!!.oneFill
-        filterWaterCount.set(filter.get()!!.passed,2)
+        filterWaterCount.set(filter.get()!!.passed,1)
         filter.notifyPropertyChanged(0)
         filterWaterCount.notifyPropertyChanged(0)
     }
